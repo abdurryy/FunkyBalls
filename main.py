@@ -1,8 +1,12 @@
+#fetch test
+
 from flask import Flask,render_template,jsonify,request
 import bot, json, threading,requests,time
 from discord.ext import commands
 import sqlite3
 app = Flask(__name__)
+
+
 
 url = "https://funkyballs.mittlabb.tech"
 
