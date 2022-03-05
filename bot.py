@@ -190,6 +190,8 @@ async def bbbbb22(ctx, amount:float, user: discord.Member):
         cur = database.cursor()
         cur.execute(f'SELECT * FROM users WHERE id=\'{user.id}\'')
         data = cur.fetchone()
+        if data == None:
+            return await ctx.send("The mentioned user is either invalid or has no wallet linked.")
         reciever_wallet = data[1]
         ###########
         cur = database.cursor()
@@ -220,6 +222,8 @@ async def bbbbb(ctx, amount:float, user:discord.Member):
         cur = database.cursor()
         cur.execute(f'SELECT * FROM users WHERE id=\'{user.id}\'')
         data = cur.fetchone()
+        if data == None:
+            return await ctx.send("The mentioned user is either invalid or has no wallet linked.")
         wallet = data[1]
         cur = database.cursor()
         cur.execute(f'SELECT * FROM wallets WHERE wallet=\'{wallet}\'')
@@ -239,6 +243,8 @@ async def bbbbb2(ctx, amount:float, user: discord.Member):
         cur = database.cursor()
         cur.execute(f'SELECT * FROM users WHERE id=\'{user.id}\'')
         data = cur.fetchone()
+        if data == None:
+            return await ctx.send("The mentioned user is either invalid or has no wallet linked.")
         wallet = data[1]
         database = sqlite3.connect('database.db')
         cur = database.cursor()
@@ -260,6 +266,9 @@ async def bbbbb(ctx, user: discord.Member):
         cur = database.cursor()
         cur.execute(f'SELECT * FROM users WHERE id=\'{user.id}\'')
         data = cur.fetchone()
+        if data == None:
+            return await ctx.send("The mentioned user is either invalid or has no wallet linked.")
+
         wallet = data[1]
         cur.execute(f'SELECT * FROM wallets WHERE wallet=\'{wallet}\'')
         data = cur.fetchone()
@@ -284,6 +293,13 @@ async def bbb(ctx, *type):
         cur = database.cursor()
         cur.execute(f'SELECT * FROM users WHERE id=\'{ctx.message.author.id}\'')
         data = cur.fetchone()
+
+        if data == None:
+            embed=discord.Embed(title="LINK YOUR WALLET", description="Please, link your wallet using: ```.link```", color=0x782778)
+            embed.set_author(name=f"{ctx.author}")
+            embed.set_footer(text="Funky Balls | WAX-Based NFT game")
+            return await ctx.send(embed=embed)
+
         database.close()
         if data == None:
             embed=discord.Embed(title="LINK A WALLET", description="Please, link your wallet using: ```/funky link```", color=0x782778)
@@ -361,6 +377,13 @@ async def wallet(ctx):
         cur = database.cursor()
         cur.execute(f'SELECT * FROM users WHERE id=\'{ctx.author.id}\'')
         i = cur.fetchone()
+        
+        if i == None:
+            embed=discord.Embed(title="LINK YOUR WALLET", description="Please, link your wallet using: ```.link```", color=0x782778)
+            embed.set_author(name=f"{ctx.author}")
+            embed.set_footer(text="Funky Balls | WAX-Based NFT game")
+            return await ctx.send(embed=embed)
+
         cur.execute(f'SELECT * FROM wallets WHERE wallet=\'{i[1]}\'')
         ii = cur.fetchone()
         try:
@@ -471,8 +494,8 @@ async def deposit(ctx, amount:float):
         
         user = data[1]
         
-        if user == "":
-            embed=discord.Embed(title="DEPOSIT FAILED", description="Please, link your wallet using: ```.link```", color=0x782778)
+        if data == None:
+            embed=discord.Embed(title="LINK YOUR WALLET", description="Please, link your wallet using: ```.link```", color=0x782778)
             embed.set_author(name=f"{ctx.author}")
             embed.set_footer(text="Funky Balls | WAX-Based NFT game")
             return await ctx.send(embed=embed)
