@@ -370,48 +370,51 @@ async def bbb(ctx, *type):
 @bot.command()
 @commands.has_role(ROLE)
 async def wallet(ctx):
-    c = ctx.channel.name
-    c = c.split("-")
-    if c[0] == "game":
-        database = sqlite3.connect('database.db')
-        cur = database.cursor()
-        cur.execute(f'SELECT * FROM users WHERE id=\'{ctx.author.id}\'')
-        i = cur.fetchone()
-        
-        if i == None:
-            embed=discord.Embed(title="LINK YOUR WALLET", description="Please, link your wallet using: ```.link```", color=0x782778)
-            embed.set_author(name=f"{ctx.author}")
-            embed.set_footer(text="Funky Balls | WAX-Based NFT game")
-            return await ctx.send(embed=embed)
-
-        cur.execute(f'SELECT * FROM wallets WHERE wallet=\'{i[1]}\'')
-        ii = cur.fetchone()
-        try:
-            account_wallet = i[1]
-            balance = str(round(float(requests.post("https://wax.greymass.com/v1/chain/get_currency_balance", json={'account': account_wallet, 'code': 'funkyballsio', 'symbol':'FTN'}).json()[0].replace(" FTN", "")), 4)) + ""
-            embed=discord.Embed(title="WALLET", description="Below displayed currencies are both in-game tokens and tokens outside the game hosted by Funky Balls. \n\nIf you want to deposit `FTN` use this command: `/funky deposit` \nYou can also withdraw your in-game currencies using this command: `/funky withdraw`", color=0x782778)
-            embed.set_author(name=f"{ctx.author}")
-            embed.add_field(name="FTN", value=f"{balance}", inline=True)
-            m = await convert(ii[1])
-            embed.add_field(name="Funky Token", value=m, inline=True)
-            embed.add_field(name="Wallet", value=f"{account_wallet}", inline=True)
-            embed.set_footer(text="Funky Balls | WAX-Based NFT game")
-            return await ctx.send(embed=embed)
-        except:
-            account_wallet = i[1]
-            embed=discord.Embed(title="WALLET", description="Below displayed currencies are both in-game tokens and tokens outside the game hosted by Funky Balls. \n\nIf you want to deposit `FTN` use this command: `/funky deposit` \nYou can also withdraw your in-game currencies using this command: `/funky withdraw`", color=0x782778)
-            embed.set_author(name=f"{ctx.author}")
-            embed.add_field(name="FTN", value=f"0", inline=True)
-            m = await convert(ii[1])
-            embed.add_field(name="Funky Token", value=m, inline=True)
-            embed.add_field(name="Wallet", value=f"{account_wallet}", inline=True)
-            embed.set_footer(text="Funky Balls | WAX-Based NFT game")
-            return await ctx.send(embed=embed)
+    try:
+        c = ctx.channel.name
+        c = c.split("-")
+        if c[0] == "game":
+            database = sqlite3.connect('database.db')
+            cur = database.cursor()
+            cur.execute(f'SELECT * FROM users WHERE id=\'{ctx.author.id}\'')
+            i = cur.fetchone()
             
-        embed=discord.Embed(title="WALLET", description="Please, link your wallet using: ```.link```", color=0x782778)
-        embed.set_author(name=f"{ctx.author}")
-        embed.set_footer(text="Funky Balls | WAX-Based NFT game")
-        await ctx.send(embed=embed)
+            if i == None:
+                embed=discord.Embed(title="LINK YOUR WALLET", description="Please, link your wallet using: ```.link```", color=0x782778)
+                embed.set_author(name=f"{ctx.author}")
+                embed.set_footer(text="Funky Balls | WAX-Based NFT game")
+                return await ctx.send(embed=embed)
+
+            cur.execute(f'SELECT * FROM wallets WHERE wallet=\'{i[1]}\'')
+            ii = cur.fetchone()
+            try:
+                account_wallet = i[1]
+                balance = str(round(float(requests.post("https://wax.greymass.com/v1/chain/get_currency_balance", json={'account': account_wallet, 'code': 'funkyballsio', 'symbol':'FTN'}).json()[0].replace(" FTN", "")), 4)) + ""
+                embed=discord.Embed(title="WALLET", description="Below displayed currencies are both in-game tokens and tokens outside the game hosted by Funky Balls. \n\nIf you want to deposit `FTN` use this command: `/funky deposit` \nYou can also withdraw your in-game currencies using this command: `/funky withdraw`", color=0x782778)
+                embed.set_author(name=f"{ctx.author}")
+                embed.add_field(name="FTN", value=f"{balance}", inline=True)
+                m = await convert(ii[1])
+                embed.add_field(name="Funky Token", value=m, inline=True)
+                embed.add_field(name="Wallet", value=f"{account_wallet}", inline=True)
+                embed.set_footer(text="Funky Balls | WAX-Based NFT game")
+                return await ctx.send(embed=embed)
+            except:
+                account_wallet = i[1]
+                embed=discord.Embed(title="WALLET", description="Below displayed currencies are both in-game tokens and tokens outside the game hosted by Funky Balls. \n\nIf you want to deposit `FTN` use this command: `/funky deposit` \nYou can also withdraw your in-game currencies using this command: `/funky withdraw`", color=0x782778)
+                embed.set_author(name=f"{ctx.author}")
+                embed.add_field(name="FTN", value=f"0", inline=True)
+                m = await convert(ii[1])
+                embed.add_field(name="Funky Token", value=m, inline=True)
+                embed.add_field(name="Wallet", value=f"{account_wallet}", inline=True)
+                embed.set_footer(text="Funky Balls | WAX-Based NFT game")
+                return await ctx.send(embed=embed)
+                
+            embed=discord.Embed(title="WALLET", description="Please, link your wallet using: ```.link```", color=0x782778)
+            embed.set_author(name=f"{ctx.author}")
+            embed.set_footer(text="Funky Balls | WAX-Based NFT game")
+            await ctx.send(embed=embed)
+    except Exception as e:
+        await ctx.send(f"error: {str(e)}")
 
 @bot.command()
 @commands.has_role(ROLE)
