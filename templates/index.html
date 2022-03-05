@@ -1,0 +1,33 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,user-scalable=no">
+      <title>Funky Balls | Verification </title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
+      <script src="{{ url_for('static',filename='js/waxjs.js') }}"></script><script src="https://unpkg.com/anchor-link@3"></script><script src="https://unpkg.com/anchor-link-browser-transport@3"></script>
+   </head>
+   <body>
+      <div id="decoration"></div>
+      <div id="id" style="display: none;">{{id}}</div>
+      <div id="e" style="display: none;">{{e}}</div>
+      <div id="hash" style="display: none;">{{hash}}</div>
+      <div id="url" style="display: none;">{{url}}</div>
+      
+      <div id="walletmiddle" onclick="WalletListVisible('none')" style="display: none;">
+         <div id="walletlist">
+            <div><button id="wcw" onclick="selectWallet(&quot;cloud&quot;)">WAX Cloud Wallet</button></div>
+            <div><button id="anchor" onclick="selectWallet(&quot;anchor&quot;)">Anchor</button></div>
+         </div>
+      </div>
+
+      <div id="buttonflex"><div id="heading">Funky Balls</div></div>
+      
+      <div id="buttonflex2" style="display: none;"><div id="subtitle"><span id="title">Link your WAX wallet to your Discord account!</span><br><span id="response" response style="display: block;font-size: 60%; margin-top: 5px;">ID: {{id}}</span></div></div>
+      <div id="buttonflex1" style="display: none;"><button id="button" class="login" onclick="WalletListVisible('flex')">Link Wallet</button></div>
+      
+   </body>
+   <script type=text/javascript src="{{ url_for('static',filename='js/main.js') }}"></script>
+</html>

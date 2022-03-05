@@ -1,0 +1,153 @@
+body {
+    /* Created with https://www.css-gradient.com */
+    background: #560151;
+    background: -webkit-radial-gradient(top, #560151, #280125);
+    background: -moz-radial-gradient(top, #560151, #280125);
+    background: radial-gradient(to bottom, #560151, #280125);
+    color: #1d001b;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#heading {
+    margin-top: 30vh;
+    font-size: 500%;
+    width: 100vw;
+    opacity: 0.7;
+    text-align: center;
+}
+
+#subtitle {
+    font-size: 140%;
+    width: 100vw;
+    opacity: 0.7;
+    text-align: center;
+}
+
+
+#buttonflex {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+
+#buttonflex1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+#buttonflex2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+#buttonflex3 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+#decoration {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: url(https://i.ibb.co/DwFSGzH/dd-5.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: center;
+    animation: anim1 2s linear infinite;
+}
+
+.login {
+    margin-right: 50px;
+    cursor: pointer;
+    padding: 10px;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-left: 4.3em;
+    margin-top: 20px;
+    background-color: rgba(255,255,255, 0.2);
+    border: 2px solid white;
+    border-radius: 10px;
+    opacity: 0.8;
+}
+
+.login:hover {
+    opacity: 0.6;
+}
+
+#walletmiddle {
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    z-index: 100;
+    margin-top: 18vh;
+}
+
+#walletlist {
+    position: absolute;
+    text-align: center;
+    background-color: rgba(54, 0, 56, 0.96);
+    padding: 5px;
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+}
+
+a {
+  color: #000000;
+}
+#wcw {
+    margin-top: 18px;
+    width: 90%;
+    background-color: transparent;
+    border: 2px solid orange;
+    height: 50px;
+    color: orange;
+    border-radius: 5px;
+}
+
+#anchor {
+    height: 50px;
+    width: 90%;
+    margin-top: 10px;
+    background-color: transparent;
+    border: 2px solid lightblue;
+    color: lightblue;
+    border-radius: 5px;
+}
+
+#anchor:hover, #wcw:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+
+
+* {
+    color: white;
+    font-family: "Manrope", Arial;
+}
+
+@keyframes anim1 {
+    50% {
+        transform: rotate(2deg);
+    }
+}
